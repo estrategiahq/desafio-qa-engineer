@@ -25,7 +25,7 @@ O Projeto deve ter uma documentação readme.md explicando tudo que será necess
 
 A entrega será feita por meio do github, para todas partes do projeto.
 Você deverá criar um repositório no github.com e nos enviar o link para que a gente possa cloná-lo e executá-lo sem dificuldades quando estiver pronto. Você não poderá commitar depois da deadline. Quaisquer commits posteriores deadline não poderão ser considerados.
-**O deadline vai ser de 5 dias corridos a partir do momento que você receber estes requisitos.**
+**O deadline vai ser de 7 dias corridos a partir do momento que você receber estes requisitos.**
 
 ### Parte 1 - Feature WEB:
 Criar casos de teste baseados no seu entendimento do que a feature de busca e visualização de detalhe de cursos da nossa home deve fazer. 
@@ -254,5 +254,5 @@ Response
 * Nem todos casos de testes deverão ser automatizados.
 * Se não encontrar bugs, crie pelo menos algum ticket de melhoria.
 * Se quiser criar tickets de bug/melhoria que encontrar em outras partes do nosso site, também é bastante válido. Assim conseguimos te avaliar melhor.
-* O deadline vai ser de *5 dias corridos a partir do momento que você receber estes requisitos.* Por favor não realize commits depois da data da entrega descrita.
+* O deadline vai ser de *7 dias corridos a partir do momento que você receber estes requisitos.* Por favor não realize commits depois da data da entrega descrita.
 * O projeto irá ser usado para avaliar suas habilidades e deve funcionar completamente e ser executável por nós sem problemas. Vamos avaliar o projeto como se fosse uma entrega de trabalho normal.
