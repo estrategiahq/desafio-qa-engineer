@@ -13,7 +13,7 @@ describe("validate project creation", () => {
         cy.authenticate(user)
     });
 
-    it.skip("create project", () => {
+    it("create project", () => {
         cy.createProject(user)
         expect(response.project.title).to.eq(user.name)
         expect(response.project.description).to.eq(user.name)
