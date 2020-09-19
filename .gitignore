@@ -1,0 +1,6 @@
+.DS_Store
+screenshots/
+videos/
+node_modules/
+reports/
+mochawesome-report/
