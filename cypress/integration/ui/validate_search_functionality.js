@@ -29,6 +29,7 @@ describe("validate search functionality", () => {
                 const totalCourseValue = totalValueConversionSecond.replace(' ', '')
                 const totalValueParcels = parcelValue * 12
                 expect(totalValueParcels.toFixed(2)).to.eq(totalCourseValue)
+                cy.screenshot()
             })
         })
     })
@@ -39,9 +40,10 @@ describe("validate search functionality", () => {
         cy.accessTeacher()
         cy.filterCourse(course)
         cy.get('._text-center').should('contain', 'Nenhum resultado encontrado.')
+        cy.screenshot()
     })
 
-    it.only("Recover password when making purchase", () => {
+    it("Recover password when making purchase", () => {
         const course = "Assinatura Platinum - Mensal"
         const email = createEmail()
         cy.optionForTeacher()
@@ -51,6 +53,7 @@ describe("validate search functionality", () => {
         cy.iForgotMyPassword()
         cy.informEmail(email)
         cy.get('.ui-alert').should('contain', 'Se email corretamente informado, você receberá um link para troca da senha')
+        cy.screenshot()
     })
 
 })
