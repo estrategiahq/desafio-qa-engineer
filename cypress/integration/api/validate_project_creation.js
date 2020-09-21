@@ -14,41 +14,66 @@ describe("validate project creation", () => {
     });
 
     it("create project", () => {
-        cy.createProject(user)
-        expect(response.project.title).to.eq(user.name)
-        expect(response.project.description).to.eq(user.name)
-        expect(response.project.tasks.name).to.eq(user.name)
+        const user = {
+            name: createName(),
+            email: createEmail(),
+        }
+        cy.createProject(user).then((response) => {
+            expect(response.body.project.title).to.eq(user.name)
+            expect(response.body.project.description).to.eq(user.name)
+            expect(response.body.project.tasks.[0].name).to.eq(user.name)
+        })
+
     });
 
     it("recover all projects", () => {
+        const user = {
+            name: createName(),
+            email: createEmail(),
+        }
         cy.createProject(user)
-        cy.recoverAllProjects()
-        expect(response.project.title).to.eq(user.name)
-        expect(response.project.description).to.eq(user.name)
-        expect(response.project.tasks.name).to.eq(user.name)
+        cy.recoverAllProjects().then((response) => {
+            expect(response.body.projects.[0].__v).to.eq(1)
+            expect(response.status).to.eq(200)
+        })
     });
 
     it("recover project", () => {
+        const user = {
+            name: createName(),
+            email: createEmail(),
+        }
         cy.createProject(user)
-        cy.recoverProject()
-        expect(response.project.title).to.eq(user.name)
-        expect(response.project.description).to.eq(user.name)
-        expect(response.project.tasks.name).to.eq(user.name)
+        cy.recoverProject().then((response) => {
+            expect(response.body.project.title).to.eq(user.name)
+            expect(response.body.project.description).to.eq(user.name)
+            expect(response.body.project.tasks.[0].name).to.eq(user.name)
+        })
     });
 
     it("update project", () => {
+        const user = {
+            name: createName(),
+            email: createEmail(),
+        }
         cy.createProject(user)
-        cy.updateProject(user)
-        expect(response.project.title).to.eq(user.email)
-        expect(response.project.description).to.eq(user.email)
-        expect(response.project.tasks.name).to.eq(user.email)
+        cy.updateProject(user).then((response) => {
+            cy.log(response)
+            expect(response.body.project.title).to.eq(user.email)
+            expect(response.body.project.description).to.eq(user.email)
+            expect(response.body.project.tasks.[0].name).to.eq(user.email)
+        })
     });
 
-    it("delete project", () => {
+    it.only("delete project", () => {
+        const user = {
+            name: createName(),
+            email: createEmail(),
+        }
         cy.createProject(user)
-        cy.deleteProject()
-        expect(response.status).to.eq(200)
-
+        cy.deleteProject().then((response) => {
+            cy.log(response.status)
+            expect(response.status).to.eq(200)
+        })
     });
-
-});
+})

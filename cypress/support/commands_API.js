@@ -12,7 +12,7 @@ Cypress.Commands.add('authRegister', (user) => {
                 password: user.pass
         }
     }).then(response => {
-        userID = response.user._id
+        userID = response.body.user._id
     })
 })
 
@@ -25,7 +25,7 @@ Cypress.Commands.add('authenticate', (user) => {
                 password: user.pass
         }
     }).then(response => {
-        auth = response.token
+        auth = response.body.token
     })
 })
 
@@ -49,7 +49,7 @@ Cypress.Commands.add("createProject", (user) => {
             ]
           }
     }).then((response) => {
-        projectID = response.project._id
+        projectID = response.body.project._id
     })
 })
 
