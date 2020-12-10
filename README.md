@@ -58,7 +58,7 @@ Todo projeto pode ser criado com um objeto de uma ou mais tarefas (tasks), que s
 Para adicionar e deletar os objetos "tasks" pode ser feito pelo PUT /projects/:projectID
 Todos os endpoints precisam de um Bearer Token que são gerados pelo Login e Register para que seja autorizado o acesso a api.
 
-**Endereço da API:** http://54.207.100.192/
+**Endereço da API:** http://54.174.86.218/
 
 Abaixo exemplos de cada endpoint:
 
