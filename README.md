@@ -37,8 +37,8 @@ Agora você deve automatizar pelo menos três cenários de teste sobre a feature
 ```
 1. Acessar a home da estratégia: https://www.estrategiaconcursos.com.br/.
 2. Utilizar a busca "Por Professor"
-3. Acessar os cursos da professora "Ena Loiola"
-4. Escolha um dos cursos que estarão disponíveis para verificar se o valor do curso na listagem de cursos da professora bate com o valor da página de detalhes do curso.
+3. Acessar os cursos de professor qualquer
+4. Escolha um dos cursos que estarão disponíveis para verificar se o valor do curso na listagem de cursos da professor bate com o valor da página de detalhes do curso.
 5. Verifique também se o valor parcelado do curso bate com o valor total do curso.
 6. Faça outras asserções que achar necessárias
 ```
@@ -46,206 +46,17 @@ Agora baseado nos cenários que **criou como cenários de teste, automatize dois
 
 
 ### Parte 2 - API: 
-Os casos de teste de API todos serão feitos propriamente para serem automatizados, cobrindo o máximo de cenários que conseguir na automação.
+Os casos de teste de API todos serão feitos propriamente para serem automatizados, cobrindo o máximo de cenários que conseguir na automação de um endpoint do JSON Placeholder.
 
-A API tem dois tipos de rotas:  
-- Auth: Criação de usuário e autenticação
-- Projects: CRUD de projetos com tarefas
+Endpoint:
+/posts
 
-O usuário que cria a projeto é vinculado ao projeto criado.
-Todo projeto pode ser criado com um objeto de uma ou mais tarefas (tasks), que são diretamente vinculados ao projeto.
+Automatizar todos exemplos de GET e POST desse recurso.
 
-Para adicionar e deletar os objetos "tasks" pode ser feito pelo PUT /projects/:projectID
-Todos os endpoints precisam de um Bearer Token que são gerados pelo Login e Register para que seja autorizado o acesso a api.
+**Endereço da API:** https://jsonplaceholder.typicode.com/
 
-**Endereço da API:** http://54.174.86.218/
+Neste endereço acima estarão as especificações do endpoint que será testado.
 
-Abaixo exemplos de cada endpoint:
-
-#### Login - POST /auth/authenticate:
-
-Request:
-```
-{
-  "email": “String”,
-  "password": “String”
-}
-```
-Response:
-```
-{
-  "user": {
-    "_id": "5f1aeb53b8cb121dab5a5c0f",
-    "name": " Test”,
-    "email": “Test@test.com",
-    "createdAt": "2020–04-21T14:08:19.740Z",
-    "__v": 0
-  },
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWFlYjUzYjhjYjEyMWRhYjVhNWMwZiIsImlhdCI6MTU5NTU5OTcwNiwiZXhwIjoxNTk1Njg2MTA2fQ.VPC5Wg8QrUU44_SsIrmteamGj4uFxJ4_y-M-FLalA-A"
-}
-```
-#### Register - POST /auth/register:
-Request:
-```
-{
-  "name": “String”,
-  "email": “String”,
-  "password": “String”
-}
-```
-Response:
-```
-{
-  "user": {
-    "_id": "5f1aeb53b8cb121dab5a5c0f",
-    "name": " Test”,
-    "email": “Test@test.com",
-    "createdAt": "2020–04-21T14:08:19.740Z",
-    "__v": 0
-  },
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMWFlYjUzYjhjYjEyMWRhYjVhNWMwZiIsImlhdCI6MTU5NTU5OTcwNiwiZXhwIjoxNTk1Njg2MTA2fQ.VPC5Wg8QrUU44_SsIrmteamGj4uFxJ4_y-M-FLalA-A"
-}
-```
-#### Create Project - POST /projects:
-Auth: Bearer Token
-Request:
-```
-{
-  "title": “String”,
-  "description": “String”,
-  "tasks": [
-    {
-      "name": “String”,
-      "assignedTo": “userID”
-    }
-  ]
-}
-```
-Response:
-```
-{
-  "project": {
-    "tasks": [
-      {
-        "completed": false,
-        "_id": "5f1aeb6eb8cb121dab5a5c11",
-        "name": “Task Name”,
-        "assignedTo": "5f11f41bcc6ba55cbb068143",
-        "project": "5f1aeb6eb8cb121dab5a5c10",
-        "createdAt": "2020-07-24T14:08:46.713Z",
-        "__v": 0
-      }
-    ],
-    "_id": "5f1aeb6eb8cb121dab5a5c10",
-    "title": "Teste",
-    "description": “Description Test”,
-    "user": "5f11f41bcc6ba55cbb068143",
-    "createdAt": "2020-07-24T14:08:46.650Z",
-    "__v": 1
-  }
-}
-```
-
-#### Get All Projects - GET /projects:
-Auth: Bearer Token
-
-Response:
-```
-{
-  "projects": [
-    {
-      "tasks": [
-        {
-          "completed": false,
-          "_id": "5f1b30a7c0613220acc3ee4c",
-          "name": “Name Teste”,
-          "assignedTo": "5f11f41bcc6ba55cbb068143",
-          "project": "5f1b30a7c0613220acc3ee4b",
-          "createdAt": "2020-07-24T19:04:07.356Z",
-          "__v": 0
-        }
-      ],
-      "_id": "5f1b30a7c0613220acc3ee4b",
-      "title": “Title Test”,
-      "description": “Description Test”,
-      "user": “5f11f41bcc6ba55cbb068143”,
-      "createdAt": "2020-07-24T19:04:07.346Z",
-      "__v": 1
-    }
-  ]
-}
-```
-#### Get Project - GET /projects/:projectID:
-Auth: Bearer Token
-
-Response:
-```
-{
-  "projects": [
-    {
-      "tasks": [
-        {
-          "completed": false,
-          "_id": "5f1b30a7c0613220acc3ee4c",
-          "name": “Name Test”,
-          "assignedTo": "5f11f41bcc6ba55cbb068143",
-          "project": "5f1b30a7c0613220acc3ee4b",
-          "createdAt": "2020-07-24T19:04:07.356Z",
-          "__v": 0
-        }
-      ],
-      "_id": "5f1b30a7c0613220acc3ee4b",
-      "title": “Title Test”,
-      "description": “Description Test”,
-      "user": “5f11f41bcc6ba55cbb068143”,
-      "createdAt": "2020-07-24T19:04:07.346Z",
-      "__v": 1
-    }
-  ]
-}
-```
-#### Update Project - PUT /projects/:projectID:
-
-Auth: Bearer Token
-Request:
-```
-{
-  "title": “String”,
-  "description": “String”,
-  "tasks": [
-    {
-      "name": “String”,
-      "assignedTo": “userID”
-    }
-  ]
-}
-```
-Response
-```
-{
-  "project": {
-    "tasks": [
-      {
-        "completed": false,
-        "_id": "5f1aeb6eb8cb121dab5a5c11",
-        "name": “Task Name”,
-        "assignedTo": "5f11f41bcc6ba55cbb068143",
-        "project": "5f1aeb6eb8cb121dab5a5c10",
-        "createdAt": "2020-07-24T14:08:46.713Z",
-        "__v": 0
-      }
-    ],
-    "_id": "5f1aeb6eb8cb121dab5a5c10",
-    "title": "Teste",
-    "description": “Description Test”,
-    "user": "5f11f41bcc6ba55cbb068143",
-    "createdAt": "2020-07-24T14:08:46.650Z",
-    "__v": 1
-  }
-}
-```
-
-#### Delete Project - DELETE /projects/:projectID
 
 
 ### Resumo e últimas considerações
